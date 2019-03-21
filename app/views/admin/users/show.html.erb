@@ -1,0 +1,41 @@
+<form data-url="<%= admin_user_path%>" data-user-id="<%= @user.id %>" method="post">
+    <input type="hidden" name="_method" value="put">
+    <center>
+    <div class="form-group">
+        <label class="form-control-label">Email user</label>
+        <input type="text" value="<%= @user.email %>" readonly class="form-control">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label class="form-control-label" for="l0">First name</label>
+        <input type="text" value="<%= @user.first_name %>" id="l0" class="form-control" name="first_name">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label class="form-control-label" for="l1">Last name</label>
+        <input type="text" value="<%= @user.last_name %>" id="l1" class="form-control" name="last_name">
+    </div>
+    <br/>
+    <div class="form-group">
+        <label class="form-control-label" for="l1">User groups: </label>
+        <label class="form-control-label"><% @user.groups.each do |u_g| %>
+        <%= u_g.name.humanize %>
+        <% end %></label>
+    </div>
+    <br/>
+    <div class="form-group">
+    <label class="form-control-label" for="l3">Group add new</label>
+    <select name="group_id" id="l3">
+        <option value>None</option>
+        <% @group.each do |g|%>
+        <option value="<%= g.id %>"><%= g.name.humanize %></option>
+        <% end %>
+    </select>
+    </div>
+    <br/>
+    <div class="form-group">
+        <button type="submit" class="btn width-200 btn-primary">Submit</button>
+        <a class="dropdown-item" data-method="delete"  href="<%= admin_user_path%>">Delete</a>
+    </div>
+    </center>
+</form>

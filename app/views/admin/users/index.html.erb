@@ -1,0 +1,11 @@
+<div class='index_container'>
+  <center>
+  <h1>List of Users</h1>
+  <br/>
+  <% @users.each do |user| %>
+  <p><%= link_to "#{user.first_name} #{user.last_name}", admin_user_path(user.id) %></p>
+  <% end %>
+  __________________<br/>
+  <%= link_to 'Create new user', new_admin_user_path %>
+  </center>
+</div>

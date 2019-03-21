@@ -1,0 +1,11 @@
+<div class='index_container'>
+  <center>
+  <%= form_for @post, url: admin_posts_path, method: :post, html: { multipart: true } do |form| %>
+    <p>Title: <%= form.text_field :title %></p>
+    <p>Text: <%= form.text_area :text %></p>
+    <p>Photo: <%= form.file_field :photo %></p>
+    <p>Document: <%= form.file_field :document %></p>
+    <%= form.submit %>
+  <% end %>
+  </center>
+</div>

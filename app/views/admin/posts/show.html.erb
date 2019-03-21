@@ -1,0 +1,18 @@
+<div class='index_container'>
+  <center>
+  <%= form_for @post, url: admin_post_path, method: :put, html: { multipart: true } do |form| %>
+    <p>Title: <%= form.text_field :title %></p>
+    <p>Text: <%= form.text_area :text %></p>
+    <p>Update photo: <%= form.file_field :photo %></p>
+    <p>Update document: <%= form.file_field :document %></p>
+    <% if(@post.photo.exists?) %>
+    <p><%= image_tag @post.photo.url, height: 300, width: 500 %></p>
+    <% end %>
+    <% if(@post.document.exists?) %>
+    <p><a href="<%= @post.document %>">Document</a></p>
+    <% end %>
+  <p><%= form.submit %></p>
+  <p><%= link_to 'Delete post', admin_post_path, method: :delete %></p>
+  <% end %>
+  </center>
+</div>
