@@ -6,7 +6,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def index
-    @posts = current_class.all
+    @posts = current_class.search(params[:search])
   end
 
   def create
@@ -14,14 +14,16 @@ class Admin::PostsController < ApplicationController
     if post.save
       redirect_to admin_posts_path
     else
-      raise "Cant create post : #{post.errors.full_messages}"
+      raise "Cant create post : #{@post.errors.full_messages}"
     end
   end
 
   def update
-    post = current_class.find(params[:id])
-    if post
-      post.update(post_params)
+    @post = current_class.find_by_id(params[:id])
+    if @post
+      @post.update(post_params)
+      add_user if params[:user_id].present?
+      add_group if params[:group_id].present?
       redirect_to admin_posts_path
     else
       raise 'Cant find post'
@@ -30,6 +32,8 @@ class Admin::PostsController < ApplicationController
 
   def show
     @post = current_class.find(params[:id])
+    @groups = Group.without_posts
+    @users = User.show_users.without_posts
   end
 
   def destroy
@@ -42,6 +46,14 @@ class Admin::PostsController < ApplicationController
   end
 
   private
+
+  def add_user
+    @post.users_posts.find_or_create_by(user_id: params[:user_id])
+  end
+
+  def add_group
+    @post.groups_posts.find_or_create_by(group_id: params[:group_id])
+  end
 
   def current_class
     Post

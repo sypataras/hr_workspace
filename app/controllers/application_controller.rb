@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def check_user!
+    redirect_to admin_main_url if current_user.admin?
+  end
+
   def check_admin!
     redirect_to admin_main_url unless current_user.admin?
   end

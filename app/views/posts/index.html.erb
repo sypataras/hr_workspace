@@ -1,0 +1,9 @@
+<div class='index_container'>
+  <center>
+  <h1>List of Posts</h1>
+  <br/>
+  <% @posts.each do |post| %>
+  <p><h3><%= link_to "#{post.title}", post_path(post.id) %></h3></p>
+  <% end %>
+  </center>
+</div>

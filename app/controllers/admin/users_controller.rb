@@ -15,7 +15,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def index
-    @users = current_class.show_users
+    @users = current_class.search(params[:search])
   end
 
   def show
@@ -24,7 +24,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    @user = current_class.find(params[:id])
+    @user = current_class.find_by_id(params[:id])
     if @user
       @user.update(user_update_params)
       redirect_to admin_users_path

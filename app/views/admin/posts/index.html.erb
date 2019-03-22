@@ -3,9 +3,17 @@
   <h1>List of Posts</h1>
   <br/>
   <% @posts.each do |post| %>
-  <p><%= link_to "#{post.title}", admin_post_path(post.id) %></p>
+  <p><%= link_to "#{post.title}", admin_post_path(post.id) %>
+  <% if post.views > 0 %>(<%= post.views %> views)<% end %></p>
   <% end %>
   __________________<br/>
-  <%= link_to 'Create new post', new_admin_post_path %>
+  <p><%= link_to 'Create new post', new_admin_post_path %></p>
+  __________________<br/>
+  <%= form_tag admin_posts_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <% end %>
   </center>
 </div>

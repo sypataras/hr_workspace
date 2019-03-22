@@ -1,0 +1,12 @@
+<div class='index_container'>
+  <center>
+    <p><h1><%= @post.title %></h1></p>
+    <p><h3><%= @post.text %></h3></p>
+    <% if(@post.photo.exists?) %>
+    <p><%= image_tag @post.photo.url, height: 300, width: 500 %></p>
+    <% end %>
+    <% if(@post.document.exists?) %>
+    <p><a href="<%= @post.document %>">Document</a></p>
+    <% end %>
+  </center>
+</div>

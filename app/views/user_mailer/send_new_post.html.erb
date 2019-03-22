@@ -1,0 +1,10 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <p>Your have new post</p>
+    <p>Go: <%= link_to @post.title, "http://localhost:3000/posts/#{@post.id}" %></p>
+  </body>
+</html>

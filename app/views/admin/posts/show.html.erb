@@ -5,6 +5,32 @@
     <p>Text: <%= form.text_area :text %></p>
     <p>Update photo: <%= form.file_field :photo %></p>
     <p>Update document: <%= form.file_field :document %></p>
+    <p>Add post to user:<select name="user_id">
+        <option value>None</option>
+        <% @users.each do |u|%>
+        <option value="<%= u.id %>"><%= "#{u.first_name} #{u.last_name}" %></option>
+        <% end %>
+    </select></p>
+    <p>Add post to group:<select name="group_id">
+        <option value>None</option>
+        <% @groups.each do |g|%>
+        <option value="<%= g.id %>"><%= g.name.humanize %></option>
+        <% end %>
+    </select></p>
+    <% if(@post.users.present?) %>
+    <p> Users list:
+    <% @post.users.each do |user| %>
+    <%= "#{user.first_name} #{user.last_name}" %>
+    <%= '|' unless @post.users.last.eql?(user)%>
+    <% end %><p>
+    <% end %>
+    <% if(@post.groups.present?) %>
+    <p> Groups list:
+    <% @post.groups.each do |group| %>
+    <%= group.name.humanize %>
+    <%= '|' unless @post.groups.last.eql?(group)%>
+    <% end %><p>
+    <% end %>
     <% if(@post.photo.exists?) %>
     <p><%= image_tag @post.photo.url, height: 300, width: 500 %></p>
     <% end %>

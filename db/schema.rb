@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_21_091326) do
+ActiveRecord::Schema.define(version: 2019_03_21_141534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2019_03_21_091326) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "groups_posts", id: false, force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "post_id", null: false
+    t.index ["group_id", "post_id"], name: "index_groups_posts_on_group_id_and_post_id"
+    t.index ["post_id", "group_id"], name: "index_groups_posts_on_post_id_and_group_id"
   end
 
   create_table "groups_users", id: false, force: :cascade do |t|
@@ -35,10 +42,10 @@ ActiveRecord::Schema.define(version: 2019_03_21_091326) do
     t.string "photo_content_type"
     t.integer "photo_file_size"
     t.datetime "photo_updated_at"
-    t.string "pdf_file_name"
-    t.string "pdf_content_type"
-    t.integer "pdf_file_size"
-    t.datetime "pdf_updated_at"
+    t.string "document_file_name"
+    t.string "document_content_type"
+    t.integer "document_file_size"
+    t.datetime "document_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["title"], name: "index_posts_on_title", unique: true
@@ -57,6 +64,15 @@ ActiveRecord::Schema.define(version: 2019_03_21_091326) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "users_posts", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.boolean "readed", default: false
+    t.index ["post_id", "user_id"], name: "index_users_posts_on_post_id_and_user_id"
+    t.index ["post_id"], name: "index_users_posts_on_post_id"
+    t.index ["user_id"], name: "index_users_posts_on_user_id"
   end
 
 end

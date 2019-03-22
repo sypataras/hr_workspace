@@ -16,6 +16,7 @@
         <input type="text" value="<%= @user.last_name %>" id="l1" class="form-control" name="last_name">
     </div>
     <br/>
+    <% if(@user.groups.present?) %>
     <div class="form-group">
         <label class="form-control-label" for="l1">User groups: </label>
         <label class="form-control-label"><% @user.groups.each do |u_g| %>
@@ -23,6 +24,7 @@
         <% end %></label>
     </div>
     <br/>
+    <% end %>
     <div class="form-group">
     <label class="form-control-label" for="l3">Group add new</label>
     <select name="group_id" id="l3">

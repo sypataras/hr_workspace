@@ -6,6 +6,13 @@
   <p><%= link_to "#{user.first_name} #{user.last_name}", admin_user_path(user.id) %></p>
   <% end %>
   __________________<br/>
-  <%= link_to 'Create new user', new_admin_user_path %>
+  <p><%= link_to 'Create new user', new_admin_user_path %></p>
+  __________________<br/>
+  <%= form_tag admin_users_path, :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+  <% end %>
   </center>
 </div>
