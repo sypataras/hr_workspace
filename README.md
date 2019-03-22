@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Create hr workspace
 
-Things you may want to cover:
+* After migration run seeds => `rake db:seed`
 
-* Ruby version
+* Test admin => `hr1@test.com` pass `11111111`
 
-* System dependencies
+* admin route => host/admin ...
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* for test send mail use `letter_opener`
