@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'admin?' do
-    let(:user){User.create(email: 'test@test.com', password: "password", password_confirmation: "password", admin: true)}
+    let(:user) { User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password', admin: true) }
     it 'invalid user' do
       expect(user.admin?).to eq(true)
     end

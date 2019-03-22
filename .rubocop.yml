@@ -1,0 +1,56 @@
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'test/test_helper.rb'
+    - 'spec/spec_helper.rb'
+    - 'spec/rails_helper.rb'
+    - 'config/**'
+    - '**/Gemfile'
+    - 'lib/swagger_blocks/**/*'
+
+Metrics/LineLength:
+  Exclude:
+    - spec/**/*
+    - config/**/*
+  Max: 160
+
+Metrics/CyclomaticComplexity:
+  Max: 15
+
+Style/GuardClause:
+  Enabled: false
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/ModuleLength:
+  Max: 200
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/CommentAnnotation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+Naming/AccessorMethodName:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+    - config/environments/**/*

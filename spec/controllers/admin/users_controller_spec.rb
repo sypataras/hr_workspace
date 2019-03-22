@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe Admin::UsersController, type: :controller do
-  let(:user){ User.create(email: 'test@test.com', password: "password", password_confirmation: "password") }
-  let(:admin){ User.create(email: 'test@test.com', password: "password", password_confirmation: "password", admin: true) }
+  let(:user) { User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password') }
+  let(:admin) { User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password', admin: true) }
   describe 'GET index' do
     it 'renders the index template' do
       sign_in admin
@@ -17,7 +17,7 @@ RSpec.describe Admin::UsersController, type: :controller do
   end
 
   describe 'POST create' do
-    let(:user_params) { { email: 'test@mest.com', password: "password", password_confirmation: "password", first_name: "Test" } }
+    let(:user_params) { { email: 'test@mest.com', password: 'password', password_confirmation: 'password', first_name: 'Test' } }
     context 'valid attributes' do
       before do
         sign_in admin

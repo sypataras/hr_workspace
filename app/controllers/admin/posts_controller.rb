@@ -21,9 +21,7 @@ class Admin::PostsController < ApplicationController
   def update
     @post = current_class.find_by_id(params[:id])
     if @post
-      @post.update(post_params)
-      add_user if params[:user_id].present?
-      add_group if params[:group_id].present?
+      update_part
       redirect_to admin_posts_path
     else
       raise 'Cant find post'
@@ -46,6 +44,12 @@ class Admin::PostsController < ApplicationController
   end
 
   private
+
+  def update_part
+    @post.update(post_params)
+    add_user if params[:user_id].present?
+    add_group if params[:group_id].present?
+  end
 
   def add_user
     @post.users_posts.find_or_create_by(user_id: params[:user_id])

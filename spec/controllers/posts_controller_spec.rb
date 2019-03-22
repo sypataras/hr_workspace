@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
-  let(:user){ User.create(email: 'test@test.com', password: "password", password_confirmation: "password") }
-  let(:admin){ User.create(email: 'test@test.com', password: "password", password_confirmation: "password", admin: true) }
-  let(:post){ Post.create(title: 'dfsdfsd') }
+  let(:user) { User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password') }
+  let(:admin) { User.create(email: 'test@test.com', password: 'password', password_confirmation: 'password', admin: true) }
+  let(:post) { Post.create(title: 'dfsdfsd') }
   describe 'GET index' do
     it 'renders the index template' do
       sign_in user
@@ -18,7 +18,7 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe 'GET show' do
-    before{UsersPost.create(user_id: user.id, post_id: post.id)}
+    before { UsersPost.create(user_id: user.id, post_id: post.id) }
     it 'renders the show template' do
       sign_in user
       get :show, params: { id: post.id }

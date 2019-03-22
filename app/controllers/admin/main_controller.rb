@@ -1,5 +1,4 @@
 class Admin::MainController < ApplicationController
-
   def root
     redirect_to new_user_session_path unless current_user
     if current_user.admin?

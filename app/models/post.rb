@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   has_attached_file :photo
-  has_attached_file :document, styles: { thumbnail: "60x60#" }
-  validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+  has_attached_file :document, styles: { thumbnail: '60x60#' }
+  validates_attachment_content_type :photo, content_type: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif']
 
   has_many :groups_posts
   has_many :groups, through: :groups_posts
