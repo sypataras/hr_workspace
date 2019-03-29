@@ -56,7 +56,7 @@ class Admin::PostsController < ApplicationController
   end
 
   def add_group
-    @post.groups_posts.find_or_create_by(group_id: params[:group_id])
+    @post.add_group(params[:group_id])
   end
 
   def current_class
