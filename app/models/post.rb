@@ -19,14 +19,12 @@ class Post < ApplicationRecord
     users_posts.where(readed: true).count
   end
 
-  private 
-
   def add_group(group_id)
     if self.groups_posts.find(group_id: group_id).nil?
       self.groups_posts.create_by(group_id: params[:group_id])
       Group.find(group_id).users.each do |user|
         user.users_posts.find_or_create_by(post_id: self.post_id)
-      end 
+      end
     end
   end
 end
